@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Untitled Document</title>
+		<script type="text/javascript" src="../../jquery/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" >
+			$(function(){
+				var parttern = /^ab/g;
+				var str = "";
+				parttern.multiline = true;				
+				console.log(parttern.test("abc1"));
+				console.log("abc1 \n abd".match(parttern));
+			});
+			
+			function myClick(){
+				var myStr = $("#mytextarea").val();
+				var parttern = /(\w|\d){1,3}/g;
+				parttern.multiline = true;				
+				console.log( myStr.match(parttern) );
+			}
+		</script>
+	</head>
+	<body>
+		<textarea rows="3" cols="20" id="mytextarea"></textarea>
+		<input type="button" id="myButton" value="pattern" onclick="myClick()"/>
+	</body>
+</html>

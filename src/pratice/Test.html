@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		<style type="text/css" href="" src = ""> </style>
+		<script type="text/javascript" src="../../jquery/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" charset="UTF-8"> 
+			$(function(){
+				var getName;//变量被提升，此时为undefined
+	                
+	            getName();//oaoafly 函数被提升 这里受函数声明的影响，虽然函数声明在最后可以被提升到最前面了
+				var getName = function() {
+					console.log('wscat');
+				};//函数表达式此时才开始覆盖函数声明的定义
+				getName();//wscat
+				function getName() {
+					console.log('oaoafly');
+				};
+				getName();//wscat 这里就执行了函数表达式的值
+			}
+			);
+			
+			
+		</script>
+	</head>
+	<body>
+		<h1>New Web Project Page</h1>
+	</body>
+</html>
+

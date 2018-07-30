@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		<style type="text/css" href="" src = ""> </style>
+		<script type="text/javascript" charset="UTF-8"> 
+			/*
+			var obj = {}; 
+			// 直接在对象上操作
+			obj.name = "zhangsan";
+			obj.say = function(){
+				alert("zhangsan hello");
+			};
+			*/
+			// console.log(obj.constructor);  // 构造函数是 function Object(){};
+			// console.log(obj.__proto__.constructor); 
+			// console.log(obj.constructor  === obj.__proto__.constructor); //true
+			/*
+			for(var attr in obj){
+				alert(obj[attr]);
+				if("function" == typeof(obj[attr])){
+					obj[attr]();
+				};
+			}
+			*/
+			
+			// 函数模板
+			function person(name){
+				this.name = name;
+				this.say = function(){
+					alert( this.name + " hello!");
+				};
+			}
+			var p1 = new person("wangwu");  
+			
+			//console.log(p1.constructor); // 构造函数是function，function继承自Object
+			//console.log(p1.__proto__.constructor);
+			//console.log(p1.constructor  === p1.__proto__.constructor); //true
+			
+			// 1.1 原型链继承
+			/*
+			function Animal(name){
+				this.name = name;
+				this.showName = function(){
+					console.log(this.name);
+				};
+			}
+			function Cat(name){
+				this.name = name;
+			}
+			var lCat = new Cat("little white");
+			console.log(lCat.constructor);
+			Cat.prototype = new Animal();
+			var lCat2 = new Cat("little white");
+			console.log(lCat2.constructor);
+			var cat = new Cat("little black");
+			cat.showName();
+			*/
+			// 组合继承
+			// 借用构造函数虽然解决了刚才两种问题， 但没有原型， 复用则无从谈起。 所以， 我们需要原型链+借用构造函数的模式，这种模式成为组合继承。
+			
+			function Animal2(name){
+				this.name = name;
+			}
+			Animal2.prototype.showName = function(){
+				console.log(this.name);
+			};
+			function Cat2(name){
+				// this.name = name;
+				Animal2.call(this,name);
+			}
+			Cat2.prototype = new Animal2();
+			var cat2 = new Cat2("little...");
+			cat2.showName();
+			
+			
+			//
+			//这种继承借助原型并基于已有的对象创建新对象，同时还不必因此创建自定义类型
+			/*
+			function obj(o) { //传递一个字面量函数
+				function F() {
+					
+				} //创建一个构造函数
+				F.prototype = o; //把字面量函数赋值给构造函数的原型
+				return new F(); //最终返回出实例化的构造函数
+			}
+			var box = { //字面量对象
+				name : 'Lee',
+				arr : ['哥哥','妹妹','姐姐']
+			};
+			var box1 = obj(box); //传递
+			alert(box1.name);
+			box1.name = 'Jack';
+			alert(box1.name);
+			alert(box1.arr);
+			box1.arr.push('父母');
+			alert(box1.arr);
+			var box2 = obj(box); //传递
+			alert(box2.name);
+			alert(box2.arr); //引用类型共享了
+			*/
+			
+			// 
+			function object(o) {
+			    function F() {}
+			    F.prototype = o;
+			    return new F();
+			}
+			
+			function inheritPrototype(subType, superType) {
+			    var prototype = object(superType.prototype);  //创建对象
+			    prototype.constructor = subType;              //增强对象
+			    subType.prototype = prototype;                //指定对象
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h1>New Web Project Page</h1>
+	</body>
+</html>
+

@@ -1,0 +1,5 @@
+div.box{width:300px;padding:20px;margin:20px;border:4px dashed #ccc;}
+div.box span{color:#999;font-style:italic;}
+div.content{width:250px;margin:10px 0;padding:20px;border:2px solid #ff6666;}
+input[type='checkbox']{margin:5px;}
+input[type='button']{height:30px;margin:10px;padding:5px 10px;}

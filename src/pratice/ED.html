@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>MyFunction</title>
+		<meta name="author" content="redrain" />
+		<!-- Date: 2017-07-26 -->
+		<script type="text/javascript" charset="utf-8" src="../../jquery/jquery-1.8.0.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="../../css/ED.css" />
+		<script type="text/javascript" charset="UTF-8">
+			$(function(){
+				$("input:checkbox[name='keleyi']").click(function mycheckbox() { 
+					var falg = 0; 
+					$("input[name='keleyi']:checkbox").each(function () { 
+						// 选中显示输入框信息
+						if ($(this).attr("checked")) { 
+							falg += 1; 
+						} 
+					});
+				} );
+				
+				 // 设置属性值
+			    $("input:button").click(function() {
+			        var fruit = "";
+			        var vegetable = "";
+			        $("input:checkbox[name='fruit']:checked").each(function() {
+			            fruit += $(this).val() + " ";
+			        });
+			        $("input:checkbox[name='vegetable']:checked").each(function() {
+			            vegetable += $(this).val() + " ";
+			        });
+			        alert("已选择水果："+fruit+"，已选择蔬菜："+vegetable);
+			             
+			    });
+				
+				
+			});
+		
+			function func(){
+				// 1 生成1表单
+				// 2 生成2表单
+				// 3 生成3表单
+			}
+			
+			function mycheckbox() { 
+				var falg = 0; 
+				$("input[name='keleyi[]']:checkbox").each(function () { 
+					if ($(this).attr("checked")) { 
+						falg += 1; 
+					} 
+				});
+				if (falg > 0) 
+				return true; 
+				else 
+				return false; 
+			} 
+			
+		</script>
+	</head>
+	<body>
+		<input name="a1" id="a1" type="checkbox" value="a1"/>
+		<input type="checkbox" name="keleyi"  value="1" />张三
+		<input type="checkbox" name="keleyi"  value="2" />李四
+		<input type="checkbox" name="keleyi"  value="3" />柯乐义
+		<input type="checkbox" name="keleyi"  value="4" />赵六
+		
+		<select onchange="func()">
+		  <option value="0" onclick="func(0)">选项一</option>
+		  <option value="1" onclick="func(1)">选项二</option>
+		</select>
+		
+		<br/>
+		<div class="box">
+		    <span>请输入用户名，限定字母、数字或下划线的组合：</span>
+		    <div class="content">
+		        <span>水果：</span>
+		        <input type="checkbox" name="fruit" value="梨子"/>梨子
+		        <input type="checkbox" name="fruit" value="李子"/>李子
+		        <input type="checkbox" name="fruit" value="栗子"/>栗子
+		        <input type="checkbox" name="fruit" value="荔枝"/>荔枝
+		        <span>蔬菜：</span>
+		        <input type="checkbox" name="vegetable" value="青菜"/>青菜
+		        <input type="checkbox" name="vegetable" value="萝卜"/>萝卜
+		        <input type="checkbox" name="vegetable" value="土豆"/>土豆
+		        <input type="checkbox" name="vegetable" value="茄子"/>茄子
+		    </div>       
+		    <input type="button" value="提交">
+		</div>
+
+	</body>
+</html>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		<style type="text/css" href="" src = ""> </style>
+		<script type="text/javascript" charset="UTF-8"> 
+			var obj = {}; 
+			// 直接在对象上操作
+			obj.name = "zhangsan";
+			obj.say = function(){
+				alert("zhangsan hello");
+			};
+			// alert(obj.constructor);  // 构造函数是 Object(){};
+			/*
+			
+			for(var attr in obj){
+				alert(obj[attr]);
+				if("function" == typeof(obj[attr])){
+					obj[attr]();
+				};
+			}
+			*/
+			
+			// 函数模板
+			function person(name){
+				this.name = name;
+				this.say = function(){
+					alert( this.name + " hello!");
+				};
+			}
+			var p1 = new person("wangwu");  
+			
+			//alert(p1.constructor); // 构造函数是function，function继承自Object
+			
+			/**
+			 * 总结对象属性
+			 * obj对象下有 __proto__
+			 * 		constructor()
+			 * 			__proto__
+			 * 				apply
+			 * 				bind
+			 * 				call
+			 * 				constructor
+			 * 			prototype
+			 * 				constructor
+			 * 				hasOwnProperty
+			 * 				isPrototypeOf
+			 * 		hasOwnProperty()
+			 * 		isPrototypeOf()
+			 * 
+			 * 
+			 * p1
+			 * 		__proto__
+			 * 			constructor
+			 * 			__proto__
+			 * 
+			 * o.__proto__ === Object.prototype,那么可以认为这种方式等价于
+			   var obj = new Object({a: 10});
+			   
+			   obj.__proto__ 原型，原型也是对象
+			   Object.prototype.__proto__  == null;  //第一条链
+			   
+			   var fn = function(){ };
+			   fn.__proto__ == Function.prototype
+			   Function.prototype.__proto__ === Object.prototype 
+			   
+			   
+			   p1.__proto__ === person.prototype
+			   person.prototype.__proto__ == Object{} / Object.prototype
+			   Object.prototype.__proto__ == null
+			 */
+			
+		</script>
+	</head>
+	<body>
+		<h1>New Web Project Page</h1>
+	</body>
+</html>
+

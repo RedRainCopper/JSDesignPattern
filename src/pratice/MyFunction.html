@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>MyFunction</title>
+		<meta name="author" content="redrain" />
+		<!-- Date: 2017-07-26 -->
+		<script type="text/javascript" charset="UTF-8">
+			function _$(){
+				var arg1 = "arg1";
+				alert(arg1);
+			}
+			
+			_$.prototype = {
+				constructor : _$,
+				addMehotd : function(){
+					alert("method1");
+				}
+			};
+			
+			_$();
+			new _$().addMehotd(); // 对象原型上扩展，如果要使用要先new出来
+			
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>
+

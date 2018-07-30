@@ -1,0 +1,93 @@
+<!DOCTYPE html	 PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>MyFunction</title>
+		<meta name="author" content="redrain" />
+		<!-- Date: 2017-07-26 -->
+		<script type="text/javascript" charset="UTF-8">
+			/**
+			 *1、基础
+			 *  // 私有属性，私有方法，外部是不能访问的
+				// 静态属性，静态方法，无需实例化就能调用
+				// 公有属性，公有方法，必须实例化才能调用
+			 */
+			function func(gender){
+				var name = "tom"; // 私有变量
+				var sayName = function(){
+					console.log("hello " + name);
+				}; // 私有方法
+				
+				this.gender = gender; //公有变量
+				this.sayGender = function(){
+					console.log("gender:" + this.gender);
+				}; // 公有方法
+			}
+			
+			func.prototype.get = function(){
+				// console.log("name:" +this.sayName());
+				this.sayGender();
+				func.sayAge(); // 直接调用
+			};
+			
+			func.age = "18"; // 静态属性
+			func.sayAge = function(){
+				console.log("age: "+func.age);
+			};  // 静态方法
+			
+			// 调用			
+			// var gender = new func("male");
+			// gender.sayGender(); // male
+			// gender.get();
+			
+			/**
+			 *2、面试题 
+			 * 量定义提升、this指针指向、运算符优先级、原型、继承、全局变量污染、对象属性及原型属性优先级
+			 */
+			function Foo() {
+				this.getName = function() {
+					console.log(3);
+					return {
+							getName: getName//这个就是第六问中涉及的构造函数的返回值问题,getName是私有变量，或者公有变量
+						};
+				};//这个就是第六问中涉及到的，JS构造函数公有方法和原型链方法的优先级
+			    getName = function () { 
+			    	alert (1); 
+			    };
+			    
+			    return this;
+			}
+			Foo.getName = function () { 
+				alert (2);
+			};
+			Foo.prototype.getName = function () { 
+				alert (3);
+			};
+			var getName = function () { 
+				alert (4);
+			};
+			function getName() { 
+				alert (5);
+			}
+			 
+			//请写出以下输出结果：
+			//Foo.getName(); // 2;直接调用Foo静态函数
+			//getName(); // 4 ；声明式函数，变量提升；表达式函数覆盖同名函数
+			//Foo().getName(); // 1；Foo函数执行，没有var标识的函数升级为全局变量，重写getName函数，并返回当前调用对象this=window，再调用getName函数
+			//getName(); // 1；刚刚被覆盖重写的函数
+			//new Foo.getName();// 2;new (Foo.getName)();
+			//new Foo().getName(); // 3;(new Foo()).getName(); 
+			//new new Foo().getName(); // 3；new ((new Foo()).getName)();
+			
+			new Foo().getName().getName(); //3 1
+			
+			
+		</script>
+	</head>
+	<body>
+
+	</body>
+</html>
+
